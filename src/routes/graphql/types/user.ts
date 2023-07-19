@@ -1,4 +1,6 @@
 import {  GraphQLInt, GraphQLObjectType, GraphQLString } from 'graphql';
+
+console.log('in user.ts')
 export const UserType= new GraphQLObjectType({
     name:'user',
     fields:{

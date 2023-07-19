@@ -1,4 +1,6 @@
 import { Type } from '@fastify/type-provider-typebox';
+import { GraphQLObjectType, GraphQLSchema } from 'graphql';
+import { UserType } from './types/user.js';
 
 export const gqlResponseSchema = Type.Partial(
   Type.Object({
@@ -18,3 +20,16 @@ export const createGqlResponseSchema = {
     },
   ),
 };
+
+
+const query = new GraphQLObjectType({
+  name:'query',
+  fields:{
+    users:{
+      type:UserType
+  }
+}
+
+})
+
+export const schema = new GraphQLSchema({ query});
