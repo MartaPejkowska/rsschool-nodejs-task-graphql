@@ -39,7 +39,7 @@
     "@fastify/sensible": "^5.0.0",
     "@fastify/swagger": "^8.6.0",
     "@fastify/swagger-ui": "^1.9.0",
-    "@fastify/type-provider-typebox": "^3.2.0",
+    "@fastify/type-provider-typebox": "^3.3.0",
     "@prisma/client": "^5.0.0",
     "dataloader": "^2.1.0",
     "fastify": "^4.0.0",
