@@ -1,10 +1,11 @@
 import { GraphQLObjectType, GraphQLString } from "graphql";
+import { UUIDType } from "./uuid.js";
 
 export const postsType= new GraphQLObjectType({
     name:'posts',
-    fields:{
+    fields:()=>({
         id:{
-            type:GraphQLString
+            type:UUIDType
         },
         title:{
             type:GraphQLString
@@ -15,5 +16,5 @@ export const postsType= new GraphQLObjectType({
         authorId:{
             type:GraphQLString
         }
-    }
+    })
 })

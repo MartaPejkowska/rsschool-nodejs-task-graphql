@@ -1,11 +1,12 @@
-import { GraphQLBoolean, GraphQLInt, GraphQLObjectType, GraphQLScalarType, GraphQLString } from "graphql";
+import { GraphQLBoolean, GraphQLInt, GraphQLObjectType, GraphQLString } from "graphql";
+import { UUIDType } from "./uuid.js";
 
 
 export const profileType= new GraphQLObjectType({
     name:'profiles',
-    fields:{
+    fields:()=>({
         id:{
-            type:GraphQLString
+            type:UUIDType
         },
         isMale:{
             type:GraphQLBoolean
@@ -14,10 +15,10 @@ export const profileType= new GraphQLObjectType({
             type: GraphQLInt
         },
         userId:{
-            type: GraphQLString
+            type: UUIDType
         },
         MemberTypeId:{
             type: GraphQLString
         }
-    }
+    })
 })

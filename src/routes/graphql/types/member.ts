@@ -1,21 +1,25 @@
-import { GraphQLFloat, GraphQLInt, GraphQLObjectType, GraphQLString } from 'graphql';
+import { GraphQLEnumType, GraphQLFloat, GraphQLInt,  GraphQLObjectType } from "graphql";
+import { MemberTypeId } from '../../member-types/schemas.js'
 
- enum MemberTypeId {
-    BASIC = 'basic',
-    BUSINESS = 'business',
-  }
 
-export const MemberType= new GraphQLObjectType({
-    name:'member',
-    fields:{
-        id:{
-            type:GraphQLString
-        },
-        discount:{
-            type: GraphQLFloat
-        },
-        postsLimitPerMonth:{
-            type:GraphQLInt
-        }
-    }
-})
+export const memberTypeIdEnum = new GraphQLEnumType({
+  name: 'MemberTypeId',
+  values: {
+    [MemberTypeId.BASIC]: {
+      value: MemberTypeId.BASIC,
+    },
+    [MemberTypeId.BUSINESS]: {
+      value: MemberTypeId.BUSINESS,
+    },
+  },
+});
+
+export const memberType = new GraphQLObjectType({
+  name: 'Member',
+  fields: () => ({
+    id: { type: memberTypeIdEnum },
+    discount: { type: GraphQLFloat },
+    postsLimitPerMonth: { type: GraphQLInt },
+
+  }),
+});

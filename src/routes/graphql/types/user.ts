@@ -1,17 +1,26 @@
-import {  GraphQLInt, GraphQLObjectType, GraphQLString } from 'graphql';
+import {  GraphQLObjectType, GraphQLString, GraphQLFloat } from 'graphql';
+import { UUIDType } from './uuid.js';
 
 console.log('in user.ts')
 export const UserType= new GraphQLObjectType({
-    name:'user',
-    fields:{
+    name:"User",
+    fields:()=>({
         id:{
-            type:GraphQLString
+            type:UUIDType
         },
         name:{
             type:GraphQLString
         },
         balance:{
-            type:GraphQLInt
+            type:GraphQLFloat
         }
-    }
+    })
+})
+
+export const userInputType= new GraphQLObjectType({
+   name:'UserInputType',
+   fields:()=>({
+    name: {type: GraphQLString},
+    balance: {type: GraphQLFloat}
+   })
 })
