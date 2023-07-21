@@ -11,15 +11,26 @@ interface IdType{
 
 const getUsers=async( _,{prisma}:GraphQLContext)=>{
     console.log('in resolver')
-    const users = await prisma.user.findMany();
+    const users = await prisma.user.findMany({
+        include:{
+            posts:true,
+            profile:true
+        }
+    }
+    );
     console.log(users)
     return users
 }
 
 const getUser=async(_, {id}:IdType, {prisma}:GraphQLContext)=>{
-    const user= await prisma.user.findUnique({
-        where:{id}
-    })
+    const user= await prisma.user.findFirst({
+
+        where:{id},
+        include:{
+        posts:true,
+        profile:true
+        }
+})
     console.log('user',user)
     return user
 }

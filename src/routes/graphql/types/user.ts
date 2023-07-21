@@ -1,5 +1,7 @@
 import {  GraphQLObjectType, GraphQLString, GraphQLFloat } from 'graphql';
 import { UUIDType } from './uuid.js';
+import { profileType } from './profiles.js';
+import { postsType } from './posts.js';
 
 console.log('in user.ts')
 export const UserType= new GraphQLObjectType({
@@ -13,7 +15,22 @@ export const UserType= new GraphQLObjectType({
         },
         balance:{
             type:GraphQLFloat
-        }
+        },
+        profile:{
+            type:profileType,
+            resolve: async (parent, args,{prisma})=>{
+                const profile= await prisma.profile.findUnique({
+                    where:parent.id})
+            }
+        },
+        posts:{
+            type:postsType,
+            resolve: async (parent, args, {prisma})=>{
+                const posts= await prisma.posts.findMany(
+                    {where:parent.id}
+                )
+            }
+        },
     })
 })
 
