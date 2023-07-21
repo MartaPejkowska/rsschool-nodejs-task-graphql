@@ -17,18 +17,19 @@ export const UserType= new GraphQLObjectType({
             type:GraphQLFloat
         },
         profile:{
-            type:profileType,
+            type: profileType,
             resolve: async (parent, args,{prisma})=>{
-                const profile= await prisma.profile.findUnique({
-                    where:parent.id})
+                const profile= await prisma.profile.findUnique({where:{id:parent.id}})
+                return profile
             }
         },
         posts:{
             type:postsType,
             resolve: async (parent, args, {prisma})=>{
                 const posts= await prisma.posts.findMany(
-                    {where:parent.id}
-                )
+                    {where:{id:parent.id}}
+                    )
+                return posts
             }
         },
     })
